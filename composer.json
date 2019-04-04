@@ -10,5 +10,11 @@
         "psr-4": {
             "Ace\\Datagrid\\": "src/"
         }
+    },
+    "extra": {
+        "zf": {
+            "component": "Ace\\Datagrid",
+            "config-provider": "Ace\\Datagrid\\ConfigProvider"
+        }
     }
 }
