@@ -2,6 +2,8 @@
 
 namespace Ace\Datagrid;
 
+use Zend\ModuleManager\ModuleManager;
+
 class Module
 {
     /**
@@ -14,5 +16,10 @@ class Module
             'service_manager' => $provider->getDependencyConfig(),
             'view_helpers'    => $provider->getViewHelperConfig(),
         ];
+    }
+
+    public function init(ModuleManager $moduleManager)
+    {
+        $moduleManager->loadModule('TwbBundle');
     }
 }
