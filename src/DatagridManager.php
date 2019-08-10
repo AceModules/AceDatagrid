@@ -1,6 +1,6 @@
 <?php
 
-namespace Ace\Datagrid;
+namespace AceDatagrid;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\ORM\QueryBuilder;

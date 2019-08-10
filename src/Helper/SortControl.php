@@ -1,6 +1,6 @@
 <?php
 
-namespace Ace\Datagrid\Helper;
+namespace AceDatagrid\Helper;
 
 use Zend\View\Exception;
 use Zend\View\Helper\AbstractHelper;

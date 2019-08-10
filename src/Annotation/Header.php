@@ -1,6 +1,6 @@
 <?php
 
-namespace Ace\Datagrid\Annotation;
+namespace AceDatagrid\Annotation;
 
 use Doctrine\Common\Annotations\Annotation;
 

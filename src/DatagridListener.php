@@ -1,11 +1,11 @@
 <?php
 
-namespace Ace\Datagrid;
+namespace AceDatagrid;
 
-use Ace\Datagrid\Annotation\Header;
-use Ace\Datagrid\Annotation\Search;
-use Ace\Datagrid\Annotation\Suggest;
-use Ace\Datagrid\Annotation\Title;
+use AceDatagrid\Annotation\Header;
+use AceDatagrid\Annotation\Search;
+use AceDatagrid\Annotation\Suggest;
+use AceDatagrid\Annotation\Title;
 use Zend\EventManager\EventInterface;
 use Zend\EventManager\EventManagerInterface;
 use Zend\Form\Annotation\AbstractAnnotationsListener;

@@ -1,25 +1,11 @@
 <?php
 
-namespace Ace\Datagrid;
-
-use Zend\ModuleManager\ModuleManager;
+namespace AceDatagrid;
 
 class Module
 {
-    /**
-     * @return array
-     */
     public function getConfig()
     {
-        $provider = new ConfigProvider();
-        return [
-            'service_manager' => $provider->getDependencyConfig(),
-            'view_helpers'    => $provider->getViewHelperConfig(),
-        ];
-    }
-
-    public function init(ModuleManager $moduleManager)
-    {
-        $moduleManager->loadModule('TwbBundle');
+        return include __DIR__ . '/../config/module.config.php';
     }
 }

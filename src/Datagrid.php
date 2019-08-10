@@ -1,6 +1,6 @@
 <?php
 
-namespace Ace\Datagrid;
+namespace AceDatagrid;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\QueryBuilder;
