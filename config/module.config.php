@@ -2,6 +2,7 @@
 
 namespace AceDatagrid;
 
+use AceTools\Factory\DoctrineAwareFactory;
 use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
@@ -10,7 +11,7 @@ return [
             'DatagridManager' => DatagridManager::class,
         ],
         'factories' => [
-            DatagridManager::class => InvokableFactory::class,
+            DatagridManager::class => DoctrineAwareFactory::class,
         ],
     ],
     'view_helpers' => [
@@ -20,6 +21,11 @@ return [
         ],
         'factories' => [
             Helper\SortControl::class => InvokableFactory::class,
+        ],
+    ],
+    'view_manager' => [
+        'template_path_stack' => [
+            __DIR__ . '/../view',
         ],
     ],
 ];

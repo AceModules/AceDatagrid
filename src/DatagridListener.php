@@ -15,12 +15,12 @@ class DatagridListener extends AbstractAnnotationsListener
     /**
      * @param EventManagerInterface $events
      */
-    public function attach(EventManagerInterface $events)
+    public function attach(EventManagerInterface $events, $priority = 1)
     {
-        $this->listeners[] = $events->attach('configureColumn', [$this, 'handleHeaderAnnotation']);
-        $this->listeners[] = $events->attach('configureColumn', [$this, 'handleSearchAnnotation']);
-        $this->listeners[] = $events->attach('configureColumn', [$this, 'handleSuggestAnnotation']);
-        $this->listeners[] = $events->attach('discoverTitle', [$this, 'handleTitleAnnotation']);
+        $this->listeners[] = $events->attach('configureColumn', [$this, 'handleHeaderAnnotation'], $priority);
+        $this->listeners[] = $events->attach('configureColumn', [$this, 'handleSearchAnnotation'], $priority);
+        $this->listeners[] = $events->attach('configureColumn', [$this, 'handleSuggestAnnotation'], $priority);
+        $this->listeners[] = $events->attach('discoverTitle', [$this, 'handleTitleAnnotation'], $priority);
     }
 
     /**

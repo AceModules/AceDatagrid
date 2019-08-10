@@ -3,15 +3,14 @@
 namespace AceDatagrid;
 
 use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\QueryBuilder;
 use Zend\EventManager\EventManagerInterface;
 use Zend\EventManager\EventManager;
 use Zend\EventManager\EventManagerAwareInterface;
-use Zend\ServiceManager\ServiceLocatorAwareInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Stdlib\ArrayObject;
 
-class DatagridManager implements EventManagerAwareInterface, ServiceLocatorAwareInterface
+class DatagridManager implements EventManagerAwareInterface
 {
     /**
      * @var EventManagerInterface
@@ -19,18 +18,21 @@ class DatagridManager implements EventManagerAwareInterface, ServiceLocatorAware
     protected $events;
 
     /**
-     * @var ServiceLocatorInterface
+     * @var EntityManager
      */
-    protected $services;
+    private $entityManager;
 
     /**
      * @var array
      */
     protected $datagrids = [];
 
-    public function __construct()
+    /**
+     * @param EntityManager $entityManager
+     */
+    public function __construct(EntityManager $entityManager)
     {
-        $this->getEventManager()->attach(new DatagridListener());
+        $this->entityManager = $entityManager;
     }
 
     /**
@@ -40,6 +42,7 @@ class DatagridManager implements EventManagerAwareInterface, ServiceLocatorAware
     public function setEventManager(EventManagerInterface $events)
     {
         $events->setIdentifiers([__CLASS__, get_called_class()]);
+        (new DatagridListener())->attach($events);
         $this->events = $events;
         return $this;
     }
@@ -56,32 +59,12 @@ class DatagridManager implements EventManagerAwareInterface, ServiceLocatorAware
     }
 
     /**
-     * @param ServiceLocatorInterface $services
-     * @return $this
-     */
-    public function setServiceLocator(ServiceLocatorInterface $services)
-    {
-        $this->services = $services;
-        return $this;
-    }
-
-    /**
-     * @return ServiceLocatorInterface
-     */
-    public function getServiceLocator()
-    {
-        return $this->services;
-    }
-
-    /**
      * @param string $className
      * @return Datagrid
      */
     public function create($className)
     {
-        /** @var \Doctrine\ORM\EntityManager $entityManager */
-        $entityManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-        $metadata = $entityManager->getClassMetadata($className);
+        $metadata = $this->entityManager->getClassMetadata($className);
         $reflection = $metadata->getReflectionClass();
 
         $datagridSpec = new ArrayObject([
@@ -115,7 +98,7 @@ class DatagridManager implements EventManagerAwareInterface, ServiceLocatorAware
             }
         }
 
-        $this->datagrids[$className] = new Datagrid($entityManager, $datagridSpec->getArrayCopy());
+        $this->datagrids[$className] = new Datagrid($this->entityManager, $datagridSpec->getArrayCopy());
         return $this->datagrids[$className];
     }
 
