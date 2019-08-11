@@ -89,7 +89,7 @@ class Datagrid
 
         $param = 1;
         foreach ($searchParamParts as $searchParamPart) {
-            $searchBooleanValue = (int)(substr($searchParamPart, 0, 1) != '!');
+            $searchBooleanValue = (int) (substr($searchParamPart, 0, 1) != '!');
             $searchParamPart = ltrim($searchParamPart, '!');
 
             $where = $queryBuilder->expr()->orX();
@@ -239,5 +239,4 @@ class Datagrid
     {
         return $this->datagridSpec['suggestColumns'];
     }
-
 }
