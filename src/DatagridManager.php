@@ -104,7 +104,7 @@ class DatagridManager implements EventManagerAwareInterface
 
     /**
      * @param $className
-     * @return mixed
+     * @return Datagrid
      */
     public function get($className)
     {
