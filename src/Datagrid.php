@@ -147,8 +147,7 @@ class Datagrid
             }
         }
 
-        // Disabled because it causes a only_full_group_by error
-        //$queryBuilder->groupBy('entity.' . $this->getPrimaryKey());
+        $queryBuilder->groupBy('entity.' . $this->getPrimaryKey());
     }
 
     /**
