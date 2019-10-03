@@ -2,7 +2,7 @@
 
 namespace AceDatagrid;
 
-use AceTools\Factory\DoctrineAwareFactory;
+use AceDbTools\Factory\DoctrineAwareFactory;
 use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [

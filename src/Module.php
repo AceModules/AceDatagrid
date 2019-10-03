@@ -8,7 +8,7 @@ class Module
     {
         return [
             'DoctrineORMModule',
-            'AceTools',
+            'AceDbTools',
         ];
     }
 
