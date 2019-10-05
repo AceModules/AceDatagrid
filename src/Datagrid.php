@@ -58,14 +58,17 @@ class Datagrid
      * @param int $maxResults
      * @return QueryBuilder
      */
-    public function createSuggestQueryBuilder($searchParam, $maxResults = 5)
+    public function createSuggestQueryBuilder($searchParam, $maxResults = 5, $splitWords = false)
     {
         $queryBuilder = $this->entityManager->createQueryBuilder()
             ->select('entity')
-            ->from($this->getClassName(), 'entity', 'entity.' . $this->getPrimaryKey())
-            ->setMaxResults($maxResults);
+            ->from($this->getClassName(), 'entity', 'entity.' . $this->getPrimaryKey());
 
-        $this->addSearchWhere($queryBuilder, $this->getSuggestColumns(), $searchParam, false);
+        if ($maxResults) {
+            $queryBuilder->setMaxResults($maxResults);
+        }
+
+        $this->addSearchWhere($queryBuilder, $this->getSuggestColumns(), $searchParam, $splitWords);
         $this->addSortOrderBy($queryBuilder, $this->getHeaderColumns(), $this->getDefaultSort());
 
         if (!$queryBuilder->getDQLPart('where')) {
