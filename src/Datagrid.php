@@ -56,9 +56,11 @@ class Datagrid
     /**
      * @param string $searchParam
      * @param int $maxResults
+     * @param bool $splitWords
+     * @param array $criteria
      * @return QueryBuilder
      */
-    public function createSuggestQueryBuilder($searchParam, $maxResults = 5, $splitWords = false)
+    public function createSuggestQueryBuilder($searchParam, $maxResults = 5, $splitWords = false, $criteria = [])
     {
         $queryBuilder = $this->entityManager->createQueryBuilder()
             ->select('entity')
@@ -70,6 +72,12 @@ class Datagrid
 
         $this->addSearchWhere($queryBuilder, $this->getSuggestColumns(), $searchParam, $splitWords);
         $this->addSortOrderBy($queryBuilder, $this->getHeaderColumns(), $this->getDefaultSort());
+
+        if ($criteria) {
+            foreach($criteria as $key => $value) {
+                $queryBuilder->andWhere($queryBuilder->expr()->eq('entity.' . $key, $value));
+            }
+        }
 
         if (!$queryBuilder->getDQLPart('where')) {
             $queryBuilder->where('1=0');
