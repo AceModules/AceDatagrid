@@ -10,6 +10,11 @@ return [
             'DatagridManager' => DatagridManager::class,
         ],
     ],
+    'view_manager' => [
+        'template_path_stack' => [
+            __DIR__ . '/../view',
+        ],
+    ],
     'view_helpers' => [
         'aliases' => [
             'sortControl' => Helper\SortControl::class,
@@ -17,11 +22,6 @@ return [
         ],
         'factories' => [
             Helper\SortControl::class => InvokableFactory::class,
-        ],
-    ],
-    'view_manager' => [
-        'template_path_stack' => [
-            __DIR__ . '/../view',
         ],
     ],
 ];
