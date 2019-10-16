@@ -2,16 +2,12 @@
 
 namespace AceDatagrid;
 
-use AceDbTools\Factory\DoctrineAwareFactory;
 use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
     'dependencies' => [
         'aliases' => [
             'DatagridManager' => DatagridManager::class,
-        ],
-        'factories' => [
-            DatagridManager::class => DoctrineAwareFactory::class,
         ],
     ],
     'view_helpers' => [
