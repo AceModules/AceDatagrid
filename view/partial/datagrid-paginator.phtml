@@ -4,13 +4,13 @@
             <?php if (isset($previous)) : ?>
                 <li>
                     <?php $query['page'] = $first; ?>
-                    <a href="<?php echo $this->url(null, [], ['query' => array_filter($query)], true); ?>">
+                    <a href="<?= $this->url(null, [], ['query' => array_filter($query)], true) ?>">
                         <span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span>
                     </a>
                 </li>
                 <li>
                     <?php $query['page'] = $previous; ?>
-                    <a href="<?php echo $this->url(null, [], ['query' => array_filter($query)], true); ?>">
+                    <a href="<?= $this->url(null, [], ['query' => array_filter($query)], true) ?>">
                         <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
                     </a>
                 </li>
@@ -27,11 +27,11 @@
                 <?php if ($page != $current) : ?>
                     <li>
                         <?php $query['page'] = $page; ?>
-                        <a href="<?php echo $this->url(null, [], ['query' => array_filter($query)], true); ?>"><?php echo $page; ?></a>
+                        <a href="<?= $this->url(null, [], ['query' => array_filter($query)], true) ?>"><?= $page ?></a>
                     </li>
                 <?php else : ?>
                     <li class="active">
-                        <a href="#"><?php echo $page; ?></a>
+                        <a href="#"><?= $page ?></a>
                     </li>
                 <?php endif; ?>
             <?php endforeach; ?>
@@ -39,13 +39,13 @@
             <?php if (isset($next)) : ?>
                 <li>
                     <?php $query['page'] = $next; ?>
-                    <a href="<?php echo $this->url(null, [], ['query' => array_filter($query)], true); ?>">
+                    <a href="<?= $this->url(null, [], ['query' => array_filter($query)], true) ?>">
                         <span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
                     </a>
                 </li>
                 <li>
                     <?php $query['page'] = $last; ?>
-                    <a href="<?php echo $this->url(null, [], ['query' => array_filter($query)], true); ?>">
+                    <a href="<?= $this->url(null, [], ['query' => array_filter($query)], true) ?>">
                         <span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span>
                     </a>
                 </li>
