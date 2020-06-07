@@ -2,7 +2,7 @@
 
 namespace AceDatagrid;
 
-use Zend\ServiceManager\Factory\InvokableFactory;
+use Laminas\ServiceManager\Factory\InvokableFactory;
 
 return [
     'dependencies' => [

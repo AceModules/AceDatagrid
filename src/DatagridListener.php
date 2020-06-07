@@ -6,9 +6,9 @@ use AceDatagrid\Annotation\Header;
 use AceDatagrid\Annotation\Search;
 use AceDatagrid\Annotation\Suggest;
 use AceDatagrid\Annotation\Title;
-use Zend\EventManager\EventInterface;
-use Zend\EventManager\EventManagerInterface;
-use Zend\Form\Annotation\AbstractAnnotationsListener;
+use Laminas\EventManager\EventInterface;
+use Laminas\EventManager\EventManagerInterface;
+use Laminas\Form\Annotation\AbstractAnnotationsListener;
 
 class DatagridListener extends AbstractAnnotationsListener
 {

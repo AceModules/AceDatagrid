@@ -2,8 +2,8 @@
 
 namespace AceDatagrid\Helper;
 
-use Zend\View\Exception;
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Exception;
+use Laminas\View\Helper\AbstractHelper;
 
 class SortControl extends AbstractHelper
 {
@@ -13,7 +13,7 @@ class SortControl extends AbstractHelper
      * @param string $label
      * @param bool $reverse
      * @param array $query
-     * @throws \Zend\View\Exception\RuntimeException
+     * @throws \Laminas\View\Exception\RuntimeException
      * @return string
      */
     public function __invoke($sort, $name, $label = '', $reverse = false, $query = [])
