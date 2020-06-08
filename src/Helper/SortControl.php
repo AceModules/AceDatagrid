@@ -26,7 +26,7 @@ class SortControl extends AbstractHelper
 
         $xhtml = '<a href="' . $this->view->url(null, [], ['query' => array_filter($query)], true) . '">' . $label;
         if (ltrim($sort, '-') == $name) {
-            $xhtml .= ' <span class="glyphicon glyphicon-chevron-' . ($sort == $name ? 'down' : 'up') . '" aria-hidden="true"></span>';
+            $xhtml .= ' <span class="fas fa-chevron-' . ($sort == $name ? 'down' : 'up') . '" aria-hidden="true"></span>';
         }
         $xhtml .= '</a>';
 

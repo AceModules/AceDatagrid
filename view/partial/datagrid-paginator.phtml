@@ -1,60 +1,60 @@
 <?php if ($pageCount) : ?>
     <div class="text-center">
-        <ul class="pagination">
+        <ul class="pagination justify-content-center">
             <?php if (isset($previous)) : ?>
-                <li>
+                <li class="page-item">
                     <?php $query['page'] = $first; ?>
-                    <a href="<?= $this->url(null, [], ['query' => array_filter($query)], true) ?>">
-                        <span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span>
+                    <a class="page-link" href="<?= $this->url(null, [], ['query' => array_filter($query)], true) ?>">
+                        <span class="fas fa-step-backward" aria-hidden="true"></span>
                     </a>
                 </li>
-                <li>
+                <li class="page-item">
                     <?php $query['page'] = $previous; ?>
-                    <a href="<?= $this->url(null, [], ['query' => array_filter($query)], true) ?>">
-                        <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
+                    <a class="page-link" href="<?= $this->url(null, [], ['query' => array_filter($query)], true) ?>">
+                        <span class="fas fa-backward" aria-hidden="true"></span>
                     </a>
                 </li>
             <?php else : ?>
-                <li class="disabled">
-                    <a href="#"><span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span></a>
+                <li class="page-item disabled">
+                    <a class="page-link" href="#"><span class="fas fa-step-backward" aria-hidden="true"></span></a>
                 </li>
-                <li class="disabled">
-                    <a href="#"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></a>
+                <li class="page-item disabled">
+                    <a class="page-link" href="#"><span class="fas fa-backward" aria-hidden="true"></span></a>
                 </li>
             <?php endif; ?>
 
             <?php foreach ($pagesInRange as $page) : ?>
                 <?php if ($page != $current) : ?>
-                    <li>
+                    <li class="page-item">
                         <?php $query['page'] = $page; ?>
-                        <a href="<?= $this->url(null, [], ['query' => array_filter($query)], true) ?>"><?= $page ?></a>
+                        <a class="page-link" href="<?= $this->url(null, [], ['query' => array_filter($query)], true) ?>"><?= $page ?></a>
                     </li>
                 <?php else : ?>
-                    <li class="active">
-                        <a href="#"><?= $page ?></a>
+                    <li class="page-item active">
+                        <a class="page-link" href="#"><?= $page ?></a>
                     </li>
                 <?php endif; ?>
             <?php endforeach; ?>
 
             <?php if (isset($next)) : ?>
-                <li>
+                <li class="page-item">
                     <?php $query['page'] = $next; ?>
-                    <a href="<?= $this->url(null, [], ['query' => array_filter($query)], true) ?>">
-                        <span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
+                    <a class="page-link" href="<?= $this->url(null, [], ['query' => array_filter($query)], true) ?>">
+                        <span class="fas fa-forward" aria-hidden="true"></span>
                     </a>
                 </li>
-                <li>
+                <li class="page-item">
                     <?php $query['page'] = $last; ?>
-                    <a href="<?= $this->url(null, [], ['query' => array_filter($query)], true) ?>">
-                        <span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span>
+                    <a class="page-link" href="<?= $this->url(null, [], ['query' => array_filter($query)], true) ?>">
+                        <span class="fas fa-step-forward" aria-hidden="true"></span>
                     </a>
                 </li>
             <?php else : ?>
-                <li class="disabled">
-                    <a href="#"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span></a>
+                <li class="page-item disabled">
+                    <a class="page-link" href="#"><span class="fas fa-forward" aria-hidden="true"></span></a>
                 </li>
-                <li class="disabled">
-                    <a href="#"><span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span></a>
+                <li class="page-item disabled">
+                    <a class="page-link" href="#"><span class="fas fa-step-forward" aria-hidden="true"></span></a>
                 </li>
             <?php endif; ?>
         </ul>
