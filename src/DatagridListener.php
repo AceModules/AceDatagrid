@@ -44,6 +44,8 @@ class DatagridListener extends AbstractAnnotationsListener
             'sortName' => $annotation->getSortName(),
             'sortColumns' => $annotation->sort,
             'sortReverse' => $annotation->reverse,
+            'customJoin' => $annotation->customJoin,
+            'hidden' => $annotation->hidden,
             'method' => $method->getName(),
         ];
 

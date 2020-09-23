@@ -88,11 +88,11 @@ class Datagrid
 
     /**
      * @param QueryBuilder $queryBuilder
-     * @param array $columns
+     * @param array $headers
      * @param string $searchParam
      * @param bool $splitWords
      */
-    public function addSearchWhere(QueryBuilder &$queryBuilder, array $columns, $searchParam, $splitWords = true)
+    public function addSearchWhere(QueryBuilder &$queryBuilder, array $headers, $searchParam, $splitWords = true)
     {
         $searchParam = trim(preg_replace('/[^a-z0-9! -]+/i', '', $searchParam));
         $searchParamParts = $splitWords ? explode(' ', $searchParam) : [$searchParam];
@@ -104,12 +104,12 @@ class Datagrid
             $searchParamPart = ltrim($searchParamPart, '!');
 
             $where = $queryBuilder->expr()->orX();
-            foreach ($columns as $column) {
-                if (strlen($searchParamPart) < $column['minLength']) {
+            foreach ($headers as $header) {
+                if (strlen($searchParamPart) < $header['minLength']) {
                     continue;
                 }
 
-                $columnAlias = $this->getJoinColumnAlias($queryBuilder, $column['name']);
+                $columnAlias = $this->getJoinColumnAlias($queryBuilder, $header['name'], $header['customJoin']);
                 $where->add($queryBuilder->expr()->like($columnAlias, '?' . $param));
 
                 if (strpos($columnAlias, $searchParamPart) !== false) {
@@ -145,7 +145,7 @@ class Datagrid
                     $columnSortDirection = (substr($column, 0, 1) == '-' xor $sortDirection);
                     $column = ltrim($column, '-');
 
-                    $columnAlias = $this->getJoinColumnAlias($queryBuilder, $column);
+                    $columnAlias = $this->getJoinColumnAlias($queryBuilder, $column, $header['customJoin']);
 
                     if ($wrapper) {
                         $wrapperAlias = str_replace('.', '_', $columnAlias) . '_' . $wrapper;
@@ -164,9 +164,10 @@ class Datagrid
     /**
      * @param QueryBuilder $queryBuilder
      * @param string $name
+     * @param bool $customJoin
      * @return string
      */
-    public function getJoinColumnAlias(QueryBuilder &$queryBuilder, $name)
+    public function getJoinColumnAlias(QueryBuilder &$queryBuilder, $name, $customJoin)
     {
         $alias = $queryBuilder->getRootAliases()[0];
         $allAliases = $queryBuilder->getAllAliases();
@@ -177,7 +178,9 @@ class Datagrid
             $joinAlias = $alias . '_' . $joinName;
 
             if (!in_array($joinAlias, $allAliases)) {
-                $queryBuilder->leftJoin($alias . '.' . $joinName, $joinAlias);
+                if (!$customJoin) {
+                    $queryBuilder->leftJoin($alias . '.' . $joinName, $joinAlias);
+                }
                 $allAliases[] = $joinAlias;
             }
 

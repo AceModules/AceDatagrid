@@ -27,6 +27,16 @@ class Header
     /**
      * @var bool
      */
+    public $customJoin = false;
+
+    /**
+     * @var bool
+     */
+    public $hidden = false;
+
+    /**
+     * @var bool
+     */
     public $default = false;
 
     /**
