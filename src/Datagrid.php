@@ -109,7 +109,7 @@ class Datagrid
                     continue;
                 }
 
-                $columnAlias = $this->getJoinColumnAlias($queryBuilder, $header['name'], $header['customJoin']);
+                $columnAlias = $this->getJoinColumnAlias($queryBuilder, $header['name'], $header['customJoin'] ?? '');
                 $where->add($queryBuilder->expr()->like($columnAlias, '?' . $param));
 
                 if (strpos($columnAlias, $searchParamPart) !== false) {
